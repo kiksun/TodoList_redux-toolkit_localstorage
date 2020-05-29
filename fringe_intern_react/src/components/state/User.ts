@@ -1,8 +1,8 @@
 type UserState = {
 	name: string;
-	icon: number;
-	clapPoint: number;
-	clapedPoint: number;
+	icon: string;
+	clap: number;
+	applaud: number;
 };
 
 export default UserState
