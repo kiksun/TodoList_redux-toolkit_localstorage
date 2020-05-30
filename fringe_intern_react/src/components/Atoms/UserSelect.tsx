@@ -1,21 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 
-type Props = {};
+type Props = {names:string[]};
 const UserDropDown: React.FC<Props> = (props) => {
+	const { names } = props;
+	console.log(names.length);
 	return (
-		<Select_Padding>
-			<option value="grapefruit">Grapefruit</option>
-			<option value="lime">Lime</option>
-			<option value="coconut">Coconut</option>
-			<option value="mango">Mango</option>
-		</Select_Padding>
+		<select>
+			{names.map((names,index) => {
+				return <option value={index}>{names}</option>;
+			})}
+		</select>
 	);
 };
 
 export default UserDropDown;
-
-const Select_Padding=styled.select`
-margin:10px;
-padding:20px,20px,0px,0px;
-`
