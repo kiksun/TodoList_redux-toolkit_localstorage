@@ -1,16 +1,29 @@
 import React from "react";
 import "./App.css";
-import Button from "./components/Atoms/Button";
-import Select from "./components/Atoms/UserSelect"
-const onclick = () => {};
-
+import ShowUserData from "./components/Organisms/ShowUserData";
+import styled from "styled-components";
+var user = JSON.parse(localStorage.getItem('Kimura') as string);
+console.log(user);
 function App() {
 	return (
-		<div className="App">
-			<Button label="aaa" onClick={onclick} />
-			<Select/>
-		</div>
+		<StyledDiv>
+			
+			<ShowUserData
+				image="https://1.bp.blogspot.com/-0-VrA-zoZ0E/WK7fKPKPVkI/AAAAAAABCBQ/1OS-nwYjBMA_iwWKouoLZStze_Uwyc8TwCLcB/s800/pose_furikaeru_man.png"
+				clap={user.clap}
+				apploute={user.apploud}
+			/>
+			
+		</StyledDiv>
 	);
 }
 
 export default App;
+
+const StyledDiv = styled.div`
+	margin: 10px auto;
+	
+	text-align: center;
+	border: solid;
+	border-color: black;
+`;
