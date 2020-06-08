@@ -1,33 +1,59 @@
 import React from "react";
-import "./App.css";
-import ShowUserData from "./components/Organisms/ShowUserData";
-import styled from "styled-components";
-var user = JSON.parse(localStorage.getItem('Kimura') as string);
-var names = JSON.parse(localStorage.getItem('names')as string );
-var users = JSON.parse(localStorage.getItem('users')as string);
+import Home from "./components/templates/home";
+
+let users = [
+	{
+		id: 0,
+		name: "kimura",
+		clap: 100,
+		apploud: 0,
+	},
+	{
+		id: 1,
+		name: "yamada",
+		clap: 100,
+		apploud: 0,
+	},
+	{
+		id: 2,
+		name: "kondou",
+		clap: 100,
+		apploud: 0,
+	},
+	{
+		id: 3,
+		name: "tatibana",
+		clap: 100,
+		apploud: 0,
+	},
+	{
+		id: 4,
+		name: "tanaka",
+		clap: 100,
+		apploud: 0,
+	},
+];
 
 
-function App() {
+const App = () => {
+	let message: string[];
+	if (localStorage.getItem("users")) {
+		users = JSON.parse(localStorage.getItem("users") as string);
+		console.log(users);
+	} else {
+		localStorage.setItem("users", JSON.stringify(users));
+		console.log(users);
+	}
+
+	if (localStorage.getItem("message")) {
+		message = JSON.parse(localStorage.getItem("message") as string);
+	} else {
+		localStorage.setItem("message", JSON.stringify([]));
+		message = [];
+	}
+
 	return (
-		<StyledDiv>
-			
-			<ShowUserData
-				image="https://1.bp.blogspot.com/-0-VrA-zoZ0E/WK7fKPKPVkI/AAAAAAABCBQ/1OS-nwYjBMA_iwWKouoLZStze_Uwyc8TwCLcB/s800/pose_furikaeru_man.png"
-				clap={user.clap}
-				apploud={user.apploud}
-				names={names}
-			/>
-			
-		</StyledDiv>
+		<Home users={users[0]} image={users[0].id} />
 	);
-}
-
+};
 export default App;
-
-const StyledDiv = styled.div`
-	margin: 10px auto;
-	
-	text-align: center;
-	border: solid;
-	border-color: black;
-`;

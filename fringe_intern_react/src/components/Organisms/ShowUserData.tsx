@@ -1,48 +1,64 @@
 import React from "react";
 import styled from "styled-components";
-import Select from "../Atoms/UserSelect";
-import UserInfo from "../../Userinfo";
+import UserSelect from "../Atoms/UserSelect";
+
 
 type Props = {
 	names: string[];
 	image: string;
 	clap: number;
 	apploud: number;
+	onChange:(e: React.ChangeEvent<HTMLSelectElement>) => void
 };
 
 const ShowUserData: React.FC<Props> = (props) => {
-	const { names, image, clap, apploud } = props;
+	const { names, image, clap, apploud,onChange } = props;
 	return (
 		<Div_Page>
-			<div>
+			<Div_Left>
 				<StyledImg src={image}></StyledImg>
-				拍手できる:{clap} 拍手された: {apploud}
-			</div>
-			<Div_Inline>
-				<Select names={names}/>
-			</Div_Inline>
+				<Div_Margin>
+					<UserSelect names={names} onChange={e=>onChange(e)}/>
+				</Div_Margin>
+			</Div_Left>
+			<Div_Inline>拍手できる:{clap}</Div_Inline>
+			<Div_Inline>拍手された: {apploud}</Div_Inline>
 		</Div_Page>
 	);
 };
 
 export default ShowUserData;
 
+const Div_Left = styled.div`
+	text-align: left;
+`;
+
+const Div_Margin = styled.div`
+	margin: 10px;
+`;
+
 const Div_Page = styled.div`
 	margin: 10px auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr;
 	background-color: skyblue;
-	text-align: center;
-	width: 75%;
+	text-align: left;
+	width: 50%;
 	border: solid;
 `;
 const Div_Inline = styled.div`
-	margin: 10px;
-	display: inline-block;
+	display: flex;
+	font-size:20px;
+	align-items: center;
+	text-align: center;
+	border-left: solid;
 `;
 
 const StyledImg = styled.img`
-	width: 10%;
-	height: 10%;
 	margin: 10px;
+	max-width: 63%;
+	object-fit: cover;
 	background-color: white;
 	vertical-align: middle;
 `;

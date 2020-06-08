@@ -1,17 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 
-type Props = {names:string[]};
-const UserDropDown: React.FC<Props> = (props) => {
-	const { names } = props;
-	console.log(names.length);
+type Props = {
+	names: string[];
+	onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+};
+const UserSelect: React.FC<Props> = (props) => {
+	const { names,onChange} = props;
 	return (
-		<select>
+		<StyledSelect onChange={e=>onChange(e)} >
 			{names.map((names,index) => {
-				return <option value={index}>{names}</option>;
+				return <option  value={index}>{names}</option>;
 			})}
-		</select>
+		</StyledSelect>
 	);
 };
 
-export default UserDropDown;
+export default UserSelect;
+
+const StyledSelect = styled.select`
+width:120px;
+`
