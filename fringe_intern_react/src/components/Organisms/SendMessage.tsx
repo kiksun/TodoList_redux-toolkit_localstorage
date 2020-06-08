@@ -21,7 +21,7 @@ const SendMessage: React.FC<Props> = (props) => {
 	return (
 		<Div_Page>
 			<Div_Grid1>
-				<StyledImg src={require(`../../images/user${applouduserid}.jpeg`)}></StyledImg>
+				<StyledImg src={require(`../../images/user${applouduserid}.jpg`)}></StyledImg>
 				<Div_Margin>
 					<UserSelect users={users} onChange={e => onChange(e)} />
 				</Div_Margin>

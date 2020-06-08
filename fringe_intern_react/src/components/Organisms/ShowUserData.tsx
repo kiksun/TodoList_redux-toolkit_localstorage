@@ -20,7 +20,7 @@ const ShowUserData: React.FC<Props> = (props) => {
 	return (
 		<Div_Page>
 			<Div_Left>
-				<StyledImg src={require(`../../images/user${userid}.jpeg`)}></StyledImg>
+				<StyledImg src={require(`../../images/user${userid}.jpg`)}></StyledImg>
 				<Div_Margin>
 					<UserSelect users={users} onChange={e =>onChange(e)} />
 				</Div_Margin>

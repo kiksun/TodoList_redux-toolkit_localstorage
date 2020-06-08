@@ -27,7 +27,7 @@ const MessageItem: React.FC<Props> = (props) => {
 		<Div_ShowMessage>
 			<Div_Left>
 				<MessageIcon ClapUserId={ClapUserId} ApploudUserId={ApploudUserId} />
-				<p>とても頭が良くて尊敬します！</p>
+				とても頭が良くて尊敬します！
 				<P_middle>
 					<IMG_Left src={require(`../../images/clap.jpg`)} alt={"aaa"}></IMG_Left>
 					{190}
@@ -54,6 +54,7 @@ width:50px;
 vertical-align: middle;
 `
 const Div_Left = styled.div`
+margin:0px;
 text-align:left;
 `
 const Div_Right = styled.div`
@@ -61,6 +62,7 @@ const Div_Right = styled.div`
 `
 
 const P_middle = styled.p`
-margin-right:10px;
+
+margin:0px;
 vertical-align: middle;
 `
