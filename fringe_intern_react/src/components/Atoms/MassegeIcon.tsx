@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 
 type Props = {
-    ClapUserId: number,
-    ApploudUserId: number,
+    ClapUserId: string,
+    ApploudUserId: string,
 }
 
 const ShowMessageIcon: React.FC<Props> = (props) => {
@@ -22,7 +22,7 @@ const ShowMessageIcon: React.FC<Props> = (props) => {
 
 const IMG = styled.img`
 margin:1px;
-width:80px;
+width:60px;
 `
 
 export default ShowMessageIcon;

@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import MessageIcon from "./MassegeIcon";
+import MessageIcon from "../Atoms/MassegeIcon";
+import Button from "../Atoms/Button";
 type Props = {
-	Arrow: string;
-	ClapUserId: number,
-	ApploudUserId: number;
+	ClapUserId: string,
+	ApploudUserId: string;
 };
 const set2fig = (num: number) => {
 	var ret
@@ -16,7 +16,7 @@ const set2fig = (num: number) => {
 	return ret;
 }
 const MessageItem: React.FC<Props> = (props) => {
-	const { ClapUserId, ApploudUserId, Arrow } = props;
+	const { ClapUserId, ApploudUserId } = props;
 	const date = new Date();
 	const dates = `${set2fig(date.getFullYear())}/${
 		set2fig(date.getMonth() + 1)
@@ -26,10 +26,14 @@ const MessageItem: React.FC<Props> = (props) => {
 	return (
 		<Div_ShowMessage>
 			<Div_Left>
-				<MessageIcon ClapUserId={ClapUserId}  ApploudUserId={ApploudUserId} />
+				<MessageIcon ClapUserId={ClapUserId} ApploudUserId={ApploudUserId} />
+				<p>とても頭が良くて尊敬します！</p>
+				<P_middle>
+					<IMG_Left src={require(`../../images/clap.jpg`)} alt={"aaa"}></IMG_Left>
+					{190}
+				</P_middle>
 			</Div_Left>
 			<Div_Right>
-				<Button_Left></Button_Left>
 				<p>{dates}</p>
 			</Div_Right>
 
@@ -44,10 +48,19 @@ width:50%;
 margin:10px auto;
 border:solid;
 `
-const Button_Left = styled.button`text-align:left`
+const IMG_Left = styled.img`
+text-align:left;
+width:50px;
+vertical-align: middle;
+`
 const Div_Left = styled.div`
 text-align:left;
 `
 const Div_Right = styled.div`
 	text-align: right;
-`;
+`
+
+const P_middle = styled.p`
+margin-right:10px;
+vertical-align: middle;
+`

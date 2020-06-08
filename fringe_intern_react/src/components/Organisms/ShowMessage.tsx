@@ -1,7 +1,7 @@
 import React from "react";
 
 type Props = {
-    a: string;
+    a: number;
 }
 const ShowMessage: React.FC<Props> = (props) => {
     const { a } = props;

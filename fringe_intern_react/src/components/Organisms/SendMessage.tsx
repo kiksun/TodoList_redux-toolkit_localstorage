@@ -10,17 +10,18 @@ type Props = {
 		clap: number,
 		apploud: number
 	}[],
+	applouduserid: string,
 	onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
 };
 
 const onClick = () => { };
 
 const SendMessage: React.FC<Props> = (props) => {
-	const { users, onChange } = props;
+	const { users, applouduserid, onChange } = props;
 	return (
 		<Div_Page>
 			<Div_Grid1>
-				<StyledImg src={require(`../../images/user${users[1].id}.jpeg`)}></StyledImg>
+				<StyledImg src={require(`../../images/user${applouduserid}.jpeg`)}></StyledImg>
 				<Div_Margin>
 					<UserSelect users={users} onChange={e => onChange(e)} />
 				</Div_Margin>

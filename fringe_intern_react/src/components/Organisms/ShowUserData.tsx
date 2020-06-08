@@ -9,22 +9,24 @@ type Props = {
 		clap: number,
 		apploud: number,
 	}[],
+	userid: string,
 	onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
 };
 
 
 const ShowUserData: React.FC<Props> = (props) => {
-	const { users, onChange } = props;
+	const { users, userid, onChange } = props;
+	const id = Number(userid);
 	return (
 		<Div_Page>
 			<Div_Left>
-				<StyledImg src={require(`../../images/user${users[2].id}.jpeg`)}></StyledImg>
+				<StyledImg src={require(`../../images/user${userid}.jpeg`)}></StyledImg>
 				<Div_Margin>
-					<UserSelect users={users} onChange={e => onChange(e)} />
+					<UserSelect users={users} onChange={e =>onChange(e)} />
 				</Div_Margin>
 			</Div_Left>
-			<Div_Inline>拍手できる:{users[1].clap}</Div_Inline>
-			<Div_Inline>拍手された: {users[1].apploud}</Div_Inline>
+			<Div_Inline>拍手できる:{users[id].clap}</Div_Inline>
+			<Div_Inline>拍手された: {users[id].apploud}</Div_Inline>
 		</Div_Page>
 	);
 };

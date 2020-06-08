@@ -1,6 +1,6 @@
 import React from "react";
-import Home from "./components/templates/home";
-import UserList from "./UsersList"
+import Home from "./templates/home";
+import UserList from "../UsersList"
 
 const App = () => {
 	type user = {
@@ -17,8 +17,8 @@ const App = () => {
 			apploud: 0,
 		}
 	];
-	let clapuserid = 0;
-	let applouduserid = 1;
+	let clapuserid = '0';
+	let applouduserid = '1';
 	let message;
 	if (localStorage.getItem("users")) {
 		users = JSON.parse(localStorage.getItem("users") as string);
