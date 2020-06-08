@@ -2,30 +2,37 @@ import React from "react";
 import Button from "../Atoms/Button";
 import styled from "styled-components";
 import UserSelect from "../Atoms/UserSelect";
+
 type Props = {
-	names: string[];
-	image: string;
-	onChange:(e: React.ChangeEvent<HTMLSelectElement>) => void
+	users: {
+		id: number,
+		name: string,
+		clap: number,
+		apploud: number
+	}[],
+	onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
 };
-const onClick = () => {};
+
+const onClick = () => { };
+
 const SendMessage: React.FC<Props> = (props) => {
-	const { names, image,onChange } = props;
+	const { users, onChange } = props;
 	return (
 		<Div_Page>
 			<Div_Grid1>
-				<StyledImg src={image}></StyledImg>
-			<Div_Margin>
-				<UserSelect names={names} onChange={e=>onChange(e)}/>
-			</Div_Margin>
+				<StyledImg src={require(`../../images/user${users[1].id}.jpeg`)}></StyledImg>
+				<Div_Margin>
+					<UserSelect users={users} onChange={e => onChange(e)} />
+				</Div_Margin>
 			</Div_Grid1>
 			<div>
-				<TextAria placeholder="5文字以上のメッセージを記入してください"/>
+				<TextAria placeholder="5文字以上のメッセージを記入してください" />
 				<div>
-				<Button label="送信" onClick={onClick} />
+					<Button label="送信" onClick={onClick} />
 				</div>
 			</div>
-			
-			
+
+
 		</Div_Page>
 	);
 };

@@ -2,15 +2,22 @@ import React from "react";
 import styled from "styled-components";
 
 type Props = {
-	names: string[];
+	users: 
+		{
+			id: number,
+			name: string,
+			clap: number,
+			apploud: number
+		}[],
 	onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
+
 const UserSelect: React.FC<Props> = (props) => {
-	const { names,onChange} = props;
+	const { users, onChange } = props;
 	return (
-		<StyledSelect onChange={e=>onChange(e)} >
-			{names.map((names,index) => {
-				return <option  value={index}>{names}</option>;
+		<StyledSelect onChange={e => onChange(e)} >
+			{users.map((user) => {
+				return <option key={user.id} value={user.id}>{user.name}</option>;
 			})}
 		</StyledSelect>
 	);

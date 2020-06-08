@@ -1,59 +1,39 @@
 import React from "react";
 import Home from "./components/templates/home";
-
-let users = [
-	{
-		id: 0,
-		name: "kimura",
-		clap: 100,
-		apploud: 0,
-	},
-	{
-		id: 1,
-		name: "yamada",
-		clap: 100,
-		apploud: 0,
-	},
-	{
-		id: 2,
-		name: "kondou",
-		clap: 100,
-		apploud: 0,
-	},
-	{
-		id: 3,
-		name: "tatibana",
-		clap: 100,
-		apploud: 0,
-	},
-	{
-		id: 4,
-		name: "tanaka",
-		clap: 100,
-		apploud: 0,
-	},
-];
-
+import UserList from "./UsersList"
 
 const App = () => {
-	let message: string[];
+	type user = {
+		id: number,
+		name: string,
+		clap: number,
+		apploud: number,
+	};
+	let users: user[] = [
+		{
+			id: 0,
+			name: "",
+			clap: 0,
+			apploud: 0,
+		}
+	];
+	let clapuserid = 0;
+	let applouduserid = 1;
+	let message;
 	if (localStorage.getItem("users")) {
 		users = JSON.parse(localStorage.getItem("users") as string);
-		console.log(users);
 	} else {
-		localStorage.setItem("users", JSON.stringify(users));
-		console.log(users);
+		localStorage.setItem("users", JSON.stringify(UserList));
+		users = UserList;
 	}
-
 	if (localStorage.getItem("message")) {
 		message = JSON.parse(localStorage.getItem("message") as string);
 	} else {
 		localStorage.setItem("message", JSON.stringify([]));
 		message = [];
 	}
-
 	return (
-		<Home users={users[0]} image={users[0].id} />
+		<Home users={users} clapuserid={clapuserid} applouduserid={applouduserid} />
 	);
 };
 export default App;

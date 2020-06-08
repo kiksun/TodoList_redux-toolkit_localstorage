@@ -2,27 +2,29 @@ import React from "react";
 import styled from "styled-components";
 import UserSelect from "../Atoms/UserSelect";
 
-
 type Props = {
-	names: string[];
-	image: string;
-	clap: number;
-	apploud: number;
-	onChange:(e: React.ChangeEvent<HTMLSelectElement>) => void
+	users: {
+		id: number,
+		name: string,
+		clap: number,
+		apploud: number,
+	}[],
+	onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
 };
 
+
 const ShowUserData: React.FC<Props> = (props) => {
-	const { names, image, clap, apploud,onChange } = props;
+	const { users, onChange } = props;
 	return (
 		<Div_Page>
 			<Div_Left>
-				<StyledImg src={image}></StyledImg>
+				<StyledImg src={require(`../../images/user${users[2].id}.jpeg`)}></StyledImg>
 				<Div_Margin>
-					<UserSelect names={names} onChange={e=>onChange(e)}/>
+					<UserSelect users={users} onChange={e => onChange(e)} />
 				</Div_Margin>
 			</Div_Left>
-			<Div_Inline>拍手できる:{clap}</Div_Inline>
-			<Div_Inline>拍手された: {apploud}</Div_Inline>
+			<Div_Inline>拍手できる:{users[1].clap}</Div_Inline>
+			<Div_Inline>拍手された: {users[1].apploud}</Div_Inline>
 		</Div_Page>
 	);
 };

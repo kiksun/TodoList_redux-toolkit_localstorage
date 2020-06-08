@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import ShowUserData from "../Organisms/ShowUserData";
 import SendMessage from "../Organisms/SendMessage";
-import ShowMessage from "../Organisms/ShowMessage";
+import ShowMessage from "../Atoms/MessageItem";
+
 
 type Props = {
     users: {
@@ -10,37 +11,49 @@ type Props = {
         name: string,
         clap: number,
         apploud: number,
-    }
-    image: number;
+    }[],
+    clapuserid:number,
+    applouduserid:number,
 }
-const ClapUserChange = () => { };
-const ApploudUserChange = () => { };
 
-const home: React.FC<Props> = (props) => {
-    const { users ,image} = props;
-    return (
-        <StyledDiv>
-            <ShowUserData
-                image={require(`../../images/user${users.id}.jpeg`)}
-                clap={users.clap}
-                apploud={users.apploud}
-                names={["aa", "aa"]}
-                onChange={ClapUserChange}
-            />
-            <SendMessage
-                names={["aa", "aa"]}
-                image={require(`../../images/user${users.id}.jpeg`)}
-                onChange={ApploudUserChange}
-            />
-            <ShowMessage ClapUserIcon={"aa"} Arrow={"aa"} ApploudUserIcon={"aa"} />
-        </StyledDiv>
-    );
+type State = {
+    clapuserid: number,
+    applouduserid: number,
+}
+
+export default class home extends React.Component<Props, State> {
+    state: State = {
+        clapuserid: 0,
+        applouduserid: 1,
+    };
+
+    ClapUserChange = () => {
+        this.setState({
+        })
+    };
+    ApploudUserChange = () => { };
+    StyledDiv = styled.div`
+    text-align: center;
+    border: solid;
+    border-color: black;
+    `
+
+
+    render() {
+        console.log(this.state.clapuserid);
+        return (
+            <this.StyledDiv>
+                <ShowUserData
+                    users={this.props.users}
+                    onChange={this.ClapUserChange}
+                />
+                <SendMessage
+                    users={this.props.users}
+                    onChange={this.ApploudUserChange}
+                />
+            </this.StyledDiv>
+        );
+    }
 };
 
-export default home;
 
-const StyledDiv = styled.div`
-	text-align: center;
-	border: solid;
-	border-color: black;
-`;
