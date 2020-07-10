@@ -6,27 +6,27 @@ type Props = {
 	users: {
 		id: number,
 		name: string,
-		clap: number,
-		apploud: number,
+		tasknumber: number,
+		tasks: string[],
+		Dates: string[],
 	}[],
-	userid: string,
-	onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
+	finishedtask:number,
+	//onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
 };
 
 
 const ShowUserData: React.FC<Props> = (props) => {
-	const { users, userid, onChange } = props;
-	const id = Number(userid);
+	 const { users, finishedtask} = props;
 	return (
 		<Div_Page>
 			<Div_Left>
-				<StyledImg src={require(`../../images/user${userid}.jpg`)}></StyledImg>
+				<StyledImg src={require(`../../images/user${users[0].id}.jpg`)}></StyledImg>
 				<Div_Margin>
-					<UserSelect users={users} onChange={e =>onChange(e)} />
+					<UserSelect users={users} />
 				</Div_Margin>
 			</Div_Left>
-			<Div_Inline>拍手できる:{users[id].clap}</Div_Inline>
-			<Div_Inline>拍手された: {users[id].apploud}</Div_Inline>
+			<Div_Inline>タスク数:{users[0].tasknumber}</Div_Inline>
+			<Div_Inline>完了タスク数: {finishedtask}</Div_Inline>
 		</Div_Page>
 	);
 };

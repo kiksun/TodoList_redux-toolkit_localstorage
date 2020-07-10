@@ -1,40 +1,32 @@
 type user = {
 	id: number,
 	name: string,
-	clap: number,
-	apploud: number,
+	tasknumber:number,
+	tasks: string[],
+	Dates:string[]
 }; 
 const UserList :user[]= [
 	{
 		id: 0,
 		name: "kimura",
-		clap: 100,
-		apploud: 0,
+		tasknumber:1,
+		tasks: ["課題を終わらせる"],
+		Dates:["2020/04/11"],
 	},
 	{
 		id: 1,
 		name: "yamada",
-		clap: 100,
-		apploud: 0,
+		tasknumber:1,
+		tasks: ["献立を考える"],
+		Dates: ["2020/05/08"]
 	},
 	{
 		id: 2,
 		name: "kondou",
-		clap: 100,
-		apploud: 0,
+		tasknumber:1,
+		tasks: ["試験勉強をする"],
+		Dates: ["2020/01/13"]
 	},
-	{
-		id: 3,
-		name: "tatibana",
-		clap: 100,
-		apploud: 0,
-	},
-	{
-		id: 4,
-		name: "tanaka",
-		clap: 100,
-		apploud: 0,
-	}
  ];
 export default UserList
 
