@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from "../../Rxtk/modules/rootReducer";
+import { AddTask, ChangeUserId,AddComplete } from "../../Rxtk/modules/userSlice";
 import ShowUserData from "../Organisms/ShowUserData";
 import SendMessage from "../Organisms/SendMessage";
 import ShowMessage from "../Organisms/ShowMessage";
-import user from "../../Rxtk/modules/userSlice";
-
 
 
 type Props = {
@@ -12,35 +13,44 @@ type Props = {
         id: number,
         name: string,
         tasknumber: number,
+        complete:number,
         tasks: string[],
-        Dates: string[],
     }[],
 }
 
-const sendTask = () => {
-    console.log("AddTask")
-}
 
 const Home: React.FC<Props> = (props) => {
-    const [task, setTask] = useState(0);
-    const { users } = props;
-    const User = user;
+    const {users}=props
+    const [inputTitle, setInputTitle] = useState('')
+    const { id,tasks, complete} = useSelector((state:RootState)=>state.user)
+    const dispatch = useDispatch();
 
-
-    const AddFinishTask = () => {
-        console.log(task)
-        setTask(task + 1)
+    const Addcomplete = () => {
+        dispatch(AddComplete(1))
+        console.log(complete)
     };
-
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputTitle(e.target.value);
+        console.log(e);
+    }
+    const ChangeUser = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const value = parseInt(e.currentTarget.value, 10);
+        dispatch(ChangeUserId(value))
+    }
+    const sendTask = () => {
+        dispatch(AddTask("a"))
+        setInputTitle('')
+        console.log(tasks)
+    }
     return (
         <StyledDiv>
             <ShowUserData
-                users={props.users}
-            //onChange={User.actions.Addtask}
-                finishedtask={task}
+                users={users}
+                onChange={ChangeUser}
+                nowuserid={id as number}
             />
             <SendMessage onClick={sendTask} />
-            <ShowMessage Tasks={users[0].tasks} onClick={AddFinishTask} />
+            <ShowMessage Tasks={users[id as number].tasks} onClick={Addcomplete} />
         </StyledDiv>
     );
 };

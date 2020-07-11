@@ -1,37 +1,40 @@
-import { createSlice, PayloadAction, configureStore } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import users from "../../UsersList";
 
-const users = JSON.parse(localStorage.getItem("users") as string);
 
-export type State = {
-    id: number,
-    name: string,
-    tasknumber: number,
+
+export type UserState = {
+    id?: number,
+    name?: string,
+    tasknumber?: number,
+    complete?: number,
     tasks: string[],
-    Dates: string[]
-}
+};
 
-const UserState: State = {
-    id: 0,
-    name: "kimura",
-    tasknumber: 1,
-    tasks: [],
-    Dates: []
+const UserState: UserState = {
+    id: users[0].id,
+    name: users[0].name,
+    tasknumber: users[0].tasknumber,
+    complete: users[0].complete,
+    tasks: users[0].tasks,
 }
 
 const user = createSlice({
     name: 'user',
     initialState: UserState,
-        reducers: {
-            Addtask: (state, action: PayloadAction<HTMLSelectElement>) => ({
-                ...state,
-            }),
+    reducers: {
+        AddTask(state, action: PayloadAction<string>) {
+            state.tasks = [action.payload, ...state.tasks]
+        },
+        AddComplete(state, action: PayloadAction<number>) {
+            state.complete = state.complete as number +action.payload
+        },
+        ChangeUserId(state, action: PayloadAction<number>) {
+            state.id = action.payload;
+        },
     },
 })
 
-const { actions } = user;
-
-export const { Addtask } = actions;
-
-
+export const { AddTask, ChangeUserId, AddComplete} = user.actions
 
 export default user;

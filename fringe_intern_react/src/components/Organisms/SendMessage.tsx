@@ -12,9 +12,9 @@ type Props = {
 const SendMessage: React.FC<Props> = (props) => {
 	const { onClick } = props;
 	return (
-		<Div_Page>	
-				<TextAria placeholder="5文字以上のメッセージを記入してください" />		
-					<Button label="送信" onClick={onClick} />		
+		<Div_Page>
+			<TextAria placeholder="タスクを記入" />
+			<Button label="送信" onClick={onClick} />
 		</Div_Page>
 	);
 };

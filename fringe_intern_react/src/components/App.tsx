@@ -7,16 +7,16 @@ const App = () => {
 		id: number,
 		name: string,
 		tasknumber: number,
+		complete:number,
 		tasks: string[],
-		Dates: string[]
 	};
 	let users: user[] = [
 		{
 			id: 0,
 			name: "",
 			tasknumber: 1,
+			complete: 0,
 			tasks: [],
-			Dates: []
 		}
 	];
 

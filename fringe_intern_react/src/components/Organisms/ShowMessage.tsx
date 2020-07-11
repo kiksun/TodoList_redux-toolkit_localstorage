@@ -3,16 +3,19 @@ import styled from "styled-components"
 import MessageItem from "../modules/MessageItem"
 type Props = {
     Tasks: string[],
-    
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void,
 }
 
 const ShowMessage: React.FC<Props> = (props) => {
-    const { Tasks,  onClick } = props;
+    const { Tasks, onClick } = props;
+    console.log(Tasks)
     return (
         <Div_Page>
-            
-            <MessageItem Tasks={Tasks}  onClick={onClick} />
+            {Tasks.map((task, index) => {
+                return (
+                    <MessageItem key={index} text={task} onClick={onClick} />
+                )
+            })}
         </Div_Page>
     );
 };
