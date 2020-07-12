@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import UserSelect from "../Atoms/UserSelect";
+import { useDispatch } from "react-redux";
+import { ChangeUserId } from "../../Rxtk/modules/userSlice";
 
 type Props = {
 	users: {
@@ -13,22 +15,26 @@ type Props = {
 	tasknumber: number,
 	complete: number,
 	nowuserid: number,
-	onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
 };
 
 
 const ShowUserData: React.FC<Props> = (props) => {
-	const { users, nowuserid, tasknumber, complete, onChange } = props;
+	const { users, nowuserid, tasknumber, complete } = props;
+	const dispatch = useDispatch();
+	const ChangeUser = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		const value = parseInt(e.currentTarget.value, 10);
+		dispatch(ChangeUserId(value))
+	}
 	return (
 		<Div_Page>
 			<Div_Left>
 				<StyledImg src={require(`../../images/user${users[nowuserid].id}.jpg`)}></StyledImg>
 				<Div_Margin>
-					<UserSelect users={users} onChange={onChange} />
+					<UserSelect users={users} onChange={ChangeUser} />
 				</Div_Margin>
 			</Div_Left>
-			<Div_Inline>タスク数:{tasknumber}</Div_Inline>
-			<Div_Inline>完了タスク数: {complete}</Div_Inline>
+			<Div_Inline>残タスク:{tasknumber}</Div_Inline>
+			<Div_Inline>累計完了タスク: {complete}</Div_Inline>
 		</Div_Page>
 	);
 };
@@ -55,7 +61,7 @@ const Div_Page = styled.div`
 `;
 const Div_Inline = styled.div`
 	display: flex;
-	font-size:20px;
+	font-size:15px;
 	align-items: center;
 	text-align: center;
 	border-left: solid;

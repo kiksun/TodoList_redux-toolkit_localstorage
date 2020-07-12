@@ -1,24 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../Atoms/Button";
 import styled from "styled-components";
 import TextAria from "../Atoms/TextAria";
-import { placeholderCSS } from "react-select/src/components/Placeholder";
+import { useDispatch } from "react-redux";
+import { AddTask } from "../../Rxtk/modules/userSlice";
+
 
 type Props = {
-	text: string,
-	placeholder:string,
-	onChange:(e:React.ChangeEvent<HTMLTextAreaElement>)=>void,
-	onClick: (e: React.MouseEvent<HTMLButtonElement>) => void,
-};
-
-
+	users: {
+		id: number,
+		name: string,
+		tasknumber: number,
+		complete: number,
+		tasks: string[],
+	}[],
+	tasks:string[],
+	nowuserid: number
+}
 
 const SendMessage: React.FC<Props> = (props) => {
-	const { text,onChange, onClick } = props;
+	const { users, nowuserid,tasks } = props
+	const [text, setText] = useState('')
+	const dispatch = useDispatch();
+	const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+		setText(e.target.value);
+	}
+	const sendTask = () => {
+		if (text !== "") {
+			dispatch(AddTask(text))
+			setText('')
+		}
+	}
 	return (
 		<Div_Page>
-			<TextAria text={text} onChange={onChange} placeholder="タスクを入力" />
-			<Button label="送信" onClick={onClick} />
+			<TextAria text={text} onChange={handleTextAreaChange} placeholder="タスクを入力" />
+			<Button label="送信" onClick={sendTask} />
 		</Div_Page>
 	);
 };
