@@ -50,7 +50,7 @@ const Home: React.FC<Props> = (props) => {
                 nowuserid={id as number}
             />
             <SendMessage onClick={sendTask} />
-            <ShowMessage Tasks={users[id as number].tasks} onClick={Addcomplete} />
+            <ShowMessage Tasks={tasks} onClick={Addcomplete} />
         </StyledDiv>
     );
 };
