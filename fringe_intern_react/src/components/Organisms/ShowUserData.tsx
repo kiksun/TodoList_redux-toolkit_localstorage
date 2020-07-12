@@ -27,12 +27,12 @@ const ShowUserData: React.FC<Props> = (props) => {
 	}
 	return (
 		<Div_Page>
-			<Div_Left>
+			<div>
 				<StyledImg src={require(`../../images/user${users[nowuserid].id}.jpg`)}></StyledImg>
 				<Div_Margin>
 					<UserSelect users={users} onChange={ChangeUser} />
 				</Div_Margin>
-			</Div_Left>
+			</div>
 			<Div_Inline>残タスク:{tasknumber}</Div_Inline>
 			<Div_Inline>累計完了タスク: {complete}</Div_Inline>
 		</Div_Page>
@@ -41,9 +41,7 @@ const ShowUserData: React.FC<Props> = (props) => {
 
 export default ShowUserData;
 
-const Div_Left = styled.div`
-	text-align: left;
-`;
+
 
 const Div_Margin = styled.div`
 	margin: 10px;
@@ -61,7 +59,7 @@ const Div_Page = styled.div`
 `;
 const Div_Inline = styled.div`
 	display: flex;
-	font-size:15px;
+	font-size:25px;
 	align-items: center;
 	text-align: center;
 	border-left: solid;

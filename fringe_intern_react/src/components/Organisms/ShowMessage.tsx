@@ -31,6 +31,6 @@ export default ShowMessage;
 
 const Div_Page = styled.div`
 margin:10px auto;
-    width:50%;
+    width:75%;
 	text-align:center;
 `;

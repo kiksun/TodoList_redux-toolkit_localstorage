@@ -42,7 +42,7 @@ export default SendMessage;
 
 const Div_Page = styled.div`
 margin:10px auto;
-    width:25%;
+    width:50%;
 	background-color:grey;
 	text-align:center;
 `;
