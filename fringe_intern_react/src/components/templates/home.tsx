@@ -21,26 +21,25 @@ type Props = {
 
 const Home: React.FC<Props> = (props) => {
     const { users } = props
-    const [inputTitle, setInputTitle] = useState('')
+    const [text, setText] = useState('')
     const { id, tasks, complete, tasknumber } = useSelector((state: RootState) => state.user)
     const dispatch = useDispatch();
 
     const Addcomplete = () => {
         dispatch(AddComplete(1))
-        console.log(complete)
     };
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputTitle(e.target.value);
-        console.log(e);
+    const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setText(e.target.value);
     }
     const ChangeUser = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const value = parseInt(e.currentTarget.value, 10);
         dispatch(ChangeUserId(value))
     }
     const sendTask = () => {
-        dispatch(AddTask("a"))
-        setInputTitle('')
-        console.log(tasks)
+        if (text !== "") {
+            dispatch(AddTask(text))
+            setText('')
+        }
     }
     return (
         <StyledDiv>
@@ -51,7 +50,7 @@ const Home: React.FC<Props> = (props) => {
                 complete={complete as number}
                 nowuserid={id as number}
             />
-            <SendMessage onClick={sendTask} />
+            <SendMessage onChange={handleTextAreaChange} onClick={sendTask} text={text} placeholder="タスクを入力" />
             <ShowMessage Tasks={tasks} onClick={Addcomplete} />
         </StyledDiv>
     );

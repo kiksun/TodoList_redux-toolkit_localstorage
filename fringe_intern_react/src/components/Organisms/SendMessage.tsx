@@ -1,19 +1,23 @@
 import React from "react";
 import Button from "../Atoms/Button";
 import styled from "styled-components";
-
+import TextAria from "../Atoms/TextAria";
+import { placeholderCSS } from "react-select/src/components/Placeholder";
 
 type Props = {
+	text: string,
+	placeholder:string,
+	onChange:(e:React.ChangeEvent<HTMLTextAreaElement>)=>void,
 	onClick: (e: React.MouseEvent<HTMLButtonElement>) => void,
 };
 
 
 
 const SendMessage: React.FC<Props> = (props) => {
-	const { onClick } = props;
+	const { text,onChange, onClick } = props;
 	return (
 		<Div_Page>
-			<TextAria placeholder="タスクを記入" />
+			<TextAria text={text} onChange={onChange} placeholder="タスクを入力" />
 			<Button label="送信" onClick={onClick} />
 		</Div_Page>
 	);
@@ -26,9 +30,3 @@ margin:10px auto;
 	background-color:grey;
 	text-align:center;
 `;
-const TextAria = styled.textarea`
-margin:10px;
-width:90%;
-height:90px;
-
-`
