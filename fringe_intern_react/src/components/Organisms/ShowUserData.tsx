@@ -7,26 +7,28 @@ type Props = {
 		id: number,
 		name: string,
 		tasknumber: number,
-		complete:number,
+		complete: number,
 		tasks: string[],
 	}[],
-	nowuserid:number,
+	tasknumber: number,
+	complete: number,
+	nowuserid: number,
 	onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
 };
 
 
 const ShowUserData: React.FC<Props> = (props) => {
-	const { users,  nowuserid, onChange } = props;
+	const { users, nowuserid, tasknumber, complete, onChange } = props;
 	return (
 		<Div_Page>
 			<Div_Left>
 				<StyledImg src={require(`../../images/user${users[nowuserid].id}.jpg`)}></StyledImg>
 				<Div_Margin>
-					<UserSelect users={users} onChange={onChange}/>
+					<UserSelect users={users} onChange={onChange} />
 				</Div_Margin>
 			</Div_Left>
-			<Div_Inline>タスク数:{users[nowuserid].tasknumber}</Div_Inline>
-			<Div_Inline>完了タスク数: {users[0].complete}</Div_Inline>
+			<Div_Inline>タスク数:{tasknumber}</Div_Inline>
+			<Div_Inline>完了タスク数: {complete}</Div_Inline>
 		</Div_Page>
 	);
 };

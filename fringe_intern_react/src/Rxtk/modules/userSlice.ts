@@ -30,11 +30,15 @@ const user = createSlice({
             state.complete = state.complete as number +action.payload
         },
         ChangeUserId(state, action: PayloadAction<number>) {
-            state.id= users[action.payload].id,
-                state.name= users[action.payload].name,
-                    state.tasknumber= users[action.payload].tasknumber,
-                        state.complete= users[action.payload].complete,
-                            state.tasks= users[action.payload].tasks,
+            const NewUser: UserState = {
+                id : users[action.payload].id,
+                name : users[action.payload].name,
+                tasknumber : users[action.payload].tasknumber,
+                complete : users[action.payload].complete,
+                tasks : users[action.payload].tasks,
+            }
+            return NewUser;
+         
         },
     },
 })

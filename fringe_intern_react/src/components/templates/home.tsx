@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from "../../Rxtk/modules/rootReducer";
-import { AddTask, ChangeUserId,AddComplete } from "../../Rxtk/modules/userSlice";
+import { AddTask, ChangeUserId, AddComplete } from "../../Rxtk/modules/userSlice";
 import ShowUserData from "../Organisms/ShowUserData";
 import SendMessage from "../Organisms/SendMessage";
 import ShowMessage from "../Organisms/ShowMessage";
@@ -13,16 +13,16 @@ type Props = {
         id: number,
         name: string,
         tasknumber: number,
-        complete:number,
+        complete: number,
         tasks: string[],
     }[],
 }
 
 
 const Home: React.FC<Props> = (props) => {
-    const {users}=props
+    const { users } = props
     const [inputTitle, setInputTitle] = useState('')
-    const { id,tasks, complete} = useSelector((state:RootState)=>state.user)
+    const { id, tasks, complete, tasknumber } = useSelector((state: RootState) => state.user)
     const dispatch = useDispatch();
 
     const Addcomplete = () => {
@@ -47,6 +47,8 @@ const Home: React.FC<Props> = (props) => {
             <ShowUserData
                 users={users}
                 onChange={ChangeUser}
+                tasknumber={tasks.length}
+                complete={complete as number}
                 nowuserid={id as number}
             />
             <SendMessage onClick={sendTask} />
